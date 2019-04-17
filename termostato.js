@@ -6,6 +6,7 @@ const EventEmitter = require('events');
 const MARGEN_ERROR = 0.3;
 
 
+
 // Clase Termostato.
 // Mira la temperatura de una habitacion y avisa si hace demasiado calor o frio.
 // Tambien informa sobre la temperatura actual de la habitacion.
@@ -29,6 +30,7 @@ class Termostato  extends EventEmitter {
 
 		// para cancelar el temporizador setInterval:
 		this.intervalId = null;
+		this.intervalId1 = null;
 	}
 
 	indicarTemperaturaIdeal(temperaturaIdeal) {
@@ -50,8 +52,13 @@ class Termostato  extends EventEmitter {
 	}
 
 	apagar() {
-		console.log('Apagando el termostato.');
-		clearInterval(this.intervalId);
+		clearInterval(this.intervalId1);
+		setTimeout(() => {
+			clearInterval(this.intervalId);
+			console.log('Apagando el termostato.');
+
+		},6000);
+
 	}
 }
 
